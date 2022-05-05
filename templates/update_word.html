@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>Edit Word</title>
+<style>
+
+		body {
+		  font-size: 1.25rem;
+		  background-color: #f6f8fa;
+		}
+
+		td {
+			line-height: 3rem;
+		}
+        table
+        {
+            width: 100%;
+        }
+        table, th, td
+        {
+            border: 1px solid black;
+            border-collapse: collapse;
+            padding: 2px 3px;
+            text-align: center;
+        }
+
+
+
+
+#container {
+    margin: auto;
+    column-count: 2;
+    column-gap: 550px;
+    padding-top: 150px;
+    float: left;
+    background-color: #f6f8fa;
+    border: 3px;
+    border-style: outset;
+}
+.column {
+  float: left;
+  width: 50%;
+  padding: 10px;
+  height: 300px; /* Should be removed. Only for demonstration */
+}
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+    </style>
+</head>
+<body>
+<div class="row" align="center">
+	<div class="column" style="width:300px;height:300px;" align="center" >
+	<form method="post" name="edit" action="/word/update">
+		<input name="id" value="{{ word_id }}" type="hidden" />
+		<table width="50%">
+		<caption><h2>Edit Word</h2></caption>
+			<tr>
+				<td rowspan="2"><label>Word</label></td>
+				<td rowspan="2"><input name="updated_word"/></td>
+			</tr>
+			<tr>
+				<td><input type="submit" value="Update"/></td>
+			</tr>
+		</table>
+		<p>{{ add_message }}</p>
+	</form>
+	</div>
+
+</div>
+</body>
+</html>

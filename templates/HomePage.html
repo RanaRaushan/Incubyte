@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>All Word Data</title>
+<style>
+
+		body {
+		  font-size: 1.25rem;
+		  background-color: #f6f8fa;
+		}
+
+		td {
+			line-height: 3rem;
+		}
+        table
+        {
+            width: 100%;
+        }
+        table, th, td
+        {
+            border: 1px solid black;
+            border-collapse: collapse;
+            padding: 2px 3px;
+            text-align: center;
+        }
+#container {
+    margin: auto;
+    column-count: 2;
+    column-gap: 550px;
+    padding-top: 150px;
+    float: left;
+    background-color: #f6f8fa;
+    border: 3px;
+    border-style: outset;
+}
+.column {
+  float: left;
+  width: 50%;
+  padding: 10px;
+  height: 300px; /* Should be removed. Only for demonstration */
+}
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+    </style>
+</head>
+<body>
+<div class="row" align="center">
+	<div class="column" style="width:600px;">
+		<table width="100%" style="width:500px;" border="3px">
+		<caption><h2>Words</h2></caption>
+			<tr>
+				<th>Word</th>
+				<th colspan="2"></th>
+			</tr>
+			{% for word in wordList %}
+			<tr>
+				<td>{{ word.word }}</td>
+				<td>
+					<form method="get" name="update" action="/word/update">
+						<input name="id" value="{{ word.word_id }}" type="hidden" />
+						<input type="submit" value="Edit"/>
+					</form>
+				</td>
+				<td>
+					<form method="post" name="remove" action="/word/delete/{{ word.word_id }}">
+						<input type="submit" value="Delete"/>
+					</form>
+				</td>
+			</tr>
+			{% endfor %}
+		</table>
+	</div>
+
+	<div class="column" style="width:300px;height:300px;" align="center" >
+	<form method="post" name="add" action="/create">
+		<table width="50%">
+		<caption><h2>Add Word</h2></caption>
+			<tr>
+				<td rowspan="2"><label>Word</label></td>
+				<td rowspan="2"><input name="word"/></td>
+			</tr>
+			<tr>
+				<td><input type="submit" value="Add"/></td>
+			</tr>
+		</table>
+		<p>{{ add_message }}</p>
+	</form>
+	</div>
+
+</div>
+</body>
+</html>
